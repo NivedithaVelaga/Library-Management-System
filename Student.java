@@ -28,12 +28,12 @@ public class Student extends Institute {
 
     private ArrayList<Book> issuedBooks;
 
-    private boolean cmsatsLibraryCard;
+    private boolean KLLibraryCard;
 
     public Student() {
     }
     public Student(String studentName, String studentId, String programEnrolledIn) {
-        super("COMSATS");
+        super("KL University");
         this.studentName = studentName;
         this.studentId = studentId;
         this.programEnrolledIn = programEnrolledIn;
@@ -42,12 +42,12 @@ public class Student extends Institute {
     }
 
     public Student(String instituteName, String studentName, String studentId, String programEnrolledIn) {
-        super("COMSATS");
+        super("KL University");
         this.studentName = studentName;
         this.studentId = studentId;
         this.programEnrolledIn = programEnrolledIn;
 
-        this.cmsatsLibraryCard = false;
+        this.KLLibraryCard = false;
 
         //issueCard("COMSATS");
 
@@ -55,11 +55,11 @@ public class Student extends Institute {
     }
 
     public int issueCard(String instituteName) {
-        if (instituteName.equals("COMSATS")) {
-            if (cmsatsLibraryCard) {
+        if (instituteName.equals("KL University")) {
+            if (KlLibraryCard) {
                 return 2;
             }
-            cmsatsLibraryCard = true;
+            KLLibraryCard = true;
             return 1;
         }
 
@@ -67,8 +67,8 @@ public class Student extends Institute {
     }
 
     public boolean hasLibraryAccess(String instituteName) {
-        if (instituteName.equals("COMSATS")) {
-            return cmsatsLibraryCard;
+        if (instituteName.equals("KL University")) {
+            return KLLibraryCard;
         }
         return false;
     }
@@ -113,7 +113,7 @@ public class Student extends Institute {
         try {
 
             myWriter.append(dataToWrite + "\n");
-            System.out.println("Successfully wrote to the file.\tNow You are recomended to issue Library Card So that you have access to COMSATS Library.");
+            System.out.println("Successfully wrote to the file.\tNow You are recomended to issue Library Card So that you have access to KL Library.");
 
         } catch (IOException e) {
             System.out.println("An error occurred.");
