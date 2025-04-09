@@ -23,9 +23,9 @@ public class Library extends Institute{
         super(instituteName);
         booksArrayList = new ArrayList<>();
 
-        if(instituteName.equals("COMSATS")) {
-            forUG = 5;
-            forPG = 3;
+        if(instituteName.equals("KL University")) {
+            forENINEERING = 5;
+            forBCA= 3;
             forPHD = 2;
             maxDays = 12;
         }
@@ -51,12 +51,12 @@ public class Library extends Institute{
     }
 //
     public RulesResultSet comsatsRules(String instituteName, String programEnrolledIn) {
-        if(instituteName.equals("COMSATS")) {
+        if(instituteName.equals("KL University")) {
             switch (programEnrolledIn) {
-                case "UG":
-                    return new RulesResultSet(forUG, maxDays);
-                case "PG":
-                    return new RulesResultSet(forPG, maxDays);
+                case "ENGINEERING":
+                    return new RulesResultSet(forENGINEERING, maxDays);
+                case "BCA":
+                    return new RulesResultSet(forBCA, maxDays);
                 case "PHD":
                     return new RulesResultSet(forPHD, maxDays);
             }
