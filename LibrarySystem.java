@@ -15,7 +15,7 @@ public class LibrarySystem {
  private static final int perDayFine = 10;
 
     private static ArrayList<Student> students;
-    private static Library comsatsLibrary;
+    private static Library KLLibrary;
     private static ArrayList<Books> booksArrayList;
     static Scanner scan=new Scanner(System.in);
 
@@ -25,11 +25,11 @@ public class LibrarySystem {
 
         students = new ArrayList<>();
 
-        comsatsLibrary = new Library("COMSATS");
+        comsatsLibrary = new Library("KL University");
         Books books=new Books();
         books.setBooks(new Book().displayBooks());
-        comsatsLibrary.addBookToLibrary(books);
-        booksArrayList=comsatsLibrary.getBooksArrayList();
+        KLLibrary.addBookToLibrary(books);
+        booksArrayList=KLLibrary.getBooksArrayList();
         students=new Student().displayStudents();
 
         while(true) {
@@ -38,7 +38,7 @@ public class LibrarySystem {
 
             System.out.println("-------------------------------------");
             System.out.println();
-            System.out.println("Welcome to COMSATS Library Management System");
+            System.out.println("Welcome to KLH Library Management System");
             System.out.println("1. Display all students");
             System.out.println("2. Display all books");
             System.out.println("3. Issue Library Card");
@@ -63,7 +63,7 @@ public class LibrarySystem {
                         printStudentList(students);
                         break;
                     case 2:
-                        displayAllBooks(comsatsLibrary);
+                        displayAllBooks(KLLibrary);
                         break;
 
                     case 3:
@@ -71,7 +71,7 @@ public class LibrarySystem {
                         break;
 
                     case 4:
-                        issueBook(comsatsLibrary);
+                        issueBook(KLLibrary);
                         break;
 
                     case 5:
@@ -87,7 +87,7 @@ public class LibrarySystem {
                         String bookName=scan.nextLine();
                         System.out.println("Enter the Author of book: ");
                         String bookAuthor=scan.nextLine();
-                        addBooksToLibrary(comsatsLibrary,bookName, bookAuthor);
+                        addBooksToLibrary(KLLibrary,bookName, bookAuthor);
                         break;
                     case 8:
                         showMyAccount();
@@ -219,7 +219,7 @@ public class LibrarySystem {
 
         try {
             String libraryName = reader.nextLine();
-            if(libraryName.equalsIgnoreCase("COMSATS")) {
+            if(libraryName.equalsIgnoreCase("KL University")) {
                 System.out.println("Enter your StudentId: ");
                 try {
                     String issuee = reader.nextLine();
@@ -252,16 +252,16 @@ public class LibrarySystem {
         }
     }
 
-    private static void issueBook(Library comsatsLibrary) {
+    private static void issueBook(Library KLLibrary) {
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter Book Name: ");
         String getBookName = reader.nextLine();
         String bookLocation;
 
-        Book bookFound = checkBookAvailable(comsatsLibrary, getBookName);
+        Book bookFound = checkBookAvailable(KLLibrary, getBookName);
             if(bookFound != null) {
-                System.out.println("Book Found in COMSATS library");
-                bookLocation = "COMSATS";
+                System.out.println("Book Found in KLH library");
+                bookLocation = "KLH";
             }
             else {
                 if(outOfStock) {
@@ -321,8 +321,8 @@ public class LibrarySystem {
     }
 //static methods 
     private static RulesResultSet maxBookStudentCanIssue(String bookLocation, String instituteName, String programEnrolledIn) {
-        if(bookLocation.equals("COMSATS")) {
-            return comsatsLibrary.comsatsRules(instituteName, programEnrolledIn);
+        if(bookLocation.equals("KL University")) {
+            return KLLibrary.comsatsRules(instituteName, programEnrolledIn);
         }
         return null;
     }
@@ -353,8 +353,8 @@ public class LibrarySystem {
         return null;
     }
 
-    private static void displayAllBooks(Library comsatsLibrary) {
-        System.out.println("\tCOMSATS Library Book Collection");
+    private static void displayAllBooks(Library KLLibrary) {
+        System.out.println("\tKLH Library Book Collection");
         for(Books books : booksArrayList) {
             for(Book book : books.getBooks()) {
                 System.out.print("Book Name:"+book.getBookName() + "\nAuthor:" + book.getBookAuthor());
@@ -405,16 +405,16 @@ public class LibrarySystem {
             String name=scan.nextLine();
             System.out.println("Enter the Id of Student : ");
             String id=scan.nextLine();
-            System.out.println("Enter the Program of Student [UG,PG,PHD]: ");
+            System.out.println("Enter the Program of Student [ENGINEERING,BCA,PHD]: ");
             String program=scan.nextLine();
-            Student student=new Student("COMSATS",name,id,program);
+            Student student=new Student("KLH",name,id,program);
             student.addStudent();
             students.add(student);
     }
 
     private static void printStudentList(ArrayList<Student> students) {
         for(Student student : students) {
-            System.out.println("Student Detail\nInstitute: "+student.getInstituteName() + "\tStudent Name: " + student.getStudentName() + "\nStudent ID: " + student.getStudentId() + "\tProgram(PG/UG/PHD): " + student.getProgramEnrolledIn()+"\n");
+            System.out.println("Student Detail\nInstitute: "+student.getInstituteName() + "\tStudent Name: " + student.getStudentName() + "\nStudent ID: " + student.getStudentId() + "\tProgram(ENGINEERING/BCA/PHD): " + student.getProgramEnrolledIn()+"\n");
         }
     }
 }
