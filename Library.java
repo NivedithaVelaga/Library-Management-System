@@ -7,8 +7,6 @@ package objectmodelpackage;
 
 import java.util.ArrayList;
 
-
-
 // Inheritance and encapsulation used
 
 public class Library extends Institute{
