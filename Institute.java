@@ -10,7 +10,7 @@ package objectmodelpackage;
  * @author abc
  */
 
-//Abstract Class used
+///Here abstract class is being used 
 //Below use of abstract class to achieve abstaraction however the purpose of both interface and abstract classes are same 
 public abstract class Institute {
     private String instituteName;
