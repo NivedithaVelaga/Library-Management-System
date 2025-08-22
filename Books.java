@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package objectmodelpackage;
-
+import java.util.*;
 import java.util.ArrayList;
 
 
@@ -39,4 +39,5 @@ public class Books {
     public void setBooks(ArrayList<Book> books) {
         this.books = books;
     }
+
 }
