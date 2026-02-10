@@ -1,33 +1,75 @@
+#Advanced Library Management System
 
-# 🏛️ Advanced Object-Oriented Library Management System
+ Project Overview
+This project is a comprehensive implementation of a **Library Management System** designed to demonstrate **Advanced Object-Oriented Programming (OOP)** principles. 
 
-![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen) ![OOP](https://img.shields.io/badge/Concept-Advanced%20OOPs-blue) ![Language](https://img.shields.io/badge/Language-C%2B%2B%20%2F%20Java-orange) ![License](https://img.shields.io/badge/License-MIT-lightgrey)
-
-## 📋 Executive Summary
-This project is a high-performance, console-based **Library Management System** engineered to demonstrate the practical application of **Advanced Object-Oriented Programming (OOP)** paradigms. 
-
-Unlike basic CRUD applications, this system implements a secure, role-based architecture where `Admin` and `Student` users interact within a controlled ecosystem. It features persistent data storage, automated fine calculation logic, and strict input validation to prevent system crashes.
+Unlike simple script-based projects, this system uses a modular architecture where every entity (User, Book, Transaction) is an object interacting within a secured ecosystem. It serves as a practical case study for **Encapsulation, Inheritance, Polymorphism, and Abstraction**.
 
 ---
 
-## 🏗️ System Architecture & Design
-The core strength of this project lies in its modular design. The system is decoupled into three layers: **Presentation (UI)**, **Business Logic**, and **Data Persistence**.
+## OOPs Architecture & Implementation
+This project is built on the four pillars of OOP. Here is how they are applied:
 
-### 📂 Project Structure
-```text
-├── src/
-│   ├── Main.java              # Entry point of the application
-│   ├── models/                # Data classes (POJOs)
-│   │   ├── Book.java          # Encapsulated Book object
-│   │   ├── User.java          # Abstract Base Class
-│   │   ├── Admin.java         # Derived Class with privileged access
-│   │   └── Student.java       # Derived Class with limited access
-│   ├── service/               # Business Logic
-│   │   ├── LibraryService.java # Handles borrowing, returning, fines
-│   │   └── Auth.java          # Handles Login/Logout security
-│   └── util/                  # Helpers
-│       └── FileHandler.java   # Manages File I/O (Database)
-├── data/
-│   ├── books.dat              # Binary/Text storage for Book records
-│   └── users.dat              # Binary/Text storage for User credentials
-└── README.md
+### 1.  Encapsulation 
+* **Concept:** Binding data and methods together and hiding sensitive details.
+* **Implementation:** All sensitive data (like `password`, `bookID`, and `userBalance`) is declared as `private`. Access is strictly controlled via public **Getter and Setter** methods to prevent unauthorized modification.
+    * *Example:* A student cannot directly change their fine amount; it can only be updated via the `calculateFine()` method.
+
+### 2.  Inheritance 
+* **Concept:** Creating new classes from existing ones to reduce code redundancy.
+* **Implementation:** We use a base class `User` that holds common attributes (Name, ID, Email).
+    * `Admin` **extends** `User` (Inherits login logic, adds "Add Book" features).
+    * `Student` **extends** `User` (Inherits login logic, adds "Borrow Book" features).
+
+### 3. Polymorphism 
+* **Concept:** The ability of a method to do different things based on the object acting upon it.
+* **Implementation:**
+    * **Method Overriding:** The `login()` function behaves differently for an Admin (redirects to Dashboard) vs. a Student (redirects to Search).
+    * **Method Overloading:** The `searchBook()` function allows users to search by **Title**, **Author**, or **ID** using the same function name but different parameters.
+
+### 4.  Abstraction 
+* **Concept:** Hiding complex implementation details and showing only the necessary features of an object.
+* **Implementation:** High-level operations like "Issue Book" are exposed to the user, while the complex logic (checking database connectivity, validating availability, calculating dates) is hidden behind abstract interfaces or internal private methods.
+
+---
+
+## 📐 UML Class Diagram
+The following diagram illustrates the relationships and hierarchy between the classes.
+
+```mermaid
+classDiagram
+    %% Abstraction & Inheritance
+    class User {
+        <<Abstract>>
+        -String name
+        -String id
+        +login()
+        +logout()
+    }
+    
+    class Admin {
+        +addBook()
+        +removeBook()
+        +viewReports()
+    }
+    
+    class Student {
+        -double fineAmount
+        +borrowBook()
+        +returnBook()
+        +payFine()
+    }
+
+    %% Encapsulation
+    class Book {
+        -String isbn
+        -String title
+        -boolean isAvailable
+        +getDetails()
+        +setAvailability()
+    }
+
+    User <|-- Admin : Inherits
+    User <|-- Student : Inherits
+    Admin "1" --> "*" Book : Manages
+    Student "1" --> "*" Book : Borrows
