@@ -1,1 +1,33 @@
 
+# 🏛️ Advanced Object-Oriented Library Management System
+
+![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen) ![OOP](https://img.shields.io/badge/Concept-Advanced%20OOPs-blue) ![Language](https://img.shields.io/badge/Language-C%2B%2B%20%2F%20Java-orange) ![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+## 📋 Executive Summary
+This project is a high-performance, console-based **Library Management System** engineered to demonstrate the practical application of **Advanced Object-Oriented Programming (OOP)** paradigms. 
+
+Unlike basic CRUD applications, this system implements a secure, role-based architecture where `Admin` and `Student` users interact within a controlled ecosystem. It features persistent data storage, automated fine calculation logic, and strict input validation to prevent system crashes.
+
+---
+
+## 🏗️ System Architecture & Design
+The core strength of this project lies in its modular design. The system is decoupled into three layers: **Presentation (UI)**, **Business Logic**, and **Data Persistence**.
+
+### 📂 Project Structure
+```text
+├── src/
+│   ├── Main.java              # Entry point of the application
+│   ├── models/                # Data classes (POJOs)
+│   │   ├── Book.java          # Encapsulated Book object
+│   │   ├── User.java          # Abstract Base Class
+│   │   ├── Admin.java         # Derived Class with privileged access
+│   │   └── Student.java       # Derived Class with limited access
+│   ├── service/               # Business Logic
+│   │   ├── LibraryService.java # Handles borrowing, returning, fines
+│   │   └── Auth.java          # Handles Login/Logout security
+│   └── util/                  # Helpers
+│       └── FileHandler.java   # Manages File I/O (Database)
+├── data/
+│   ├── books.dat              # Binary/Text storage for Book records
+│   └── users.dat              # Binary/Text storage for User credentials
+└── README.md
